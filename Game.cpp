@@ -5,11 +5,13 @@
 Game::Game() : currentPlayerIndex(0) {
     // 初始化遊戲，例如設定玩家數量等
     // 在這裡可以添加初始化玩家、寶石、卡片等的邏輯
+    // int numPlayers = 3;
+    numPlayers = 4;
 }
 
 void Game::initialize() {
     // 初始化玩家
-    numPlayers = 2; // 假設遊戲有2位玩家
+    //numPlayers = 2; // 假設遊戲有2位玩家
     for (int i = 0; i < numPlayers; ++i) {
         Player player;
         players.push_back(player);
@@ -75,7 +77,7 @@ void Game::playerTurn(Player& player) {
 void Game::collectGems(Player& player) {
     std::cout << "玩家 " << currentPlayerIndex + 1 << " 選擇收集寶石\n";
 
-    // 在这里添加收集寶石的邏輯
+    // 在這裡添加收集寶石的邏輯
     // 提示玩家选择寶石的方式，例如从寶石供應區或公共區域收集
 
     // 示例：假设玩家选择从寶石供應區收集
@@ -89,15 +91,15 @@ void Game::collectGems(Player& player) {
 void Game::buyCard(Player& player) {
     std::cout << "玩家 " << currentPlayerIndex + 1 << " 選擇購買卡片\n";
 
-    // 在这里添加購買卡片的邏輯
-    // 提示玩家选择要购买的卡片，从公共卡片區域中选择
+    // 在這裡添加購買卡片的邏輯
+    // 提示玩家選擇要購買的卡片，從公共卡片區域中選擇
 
-    // 示例：假设玩家选择购买公共卡片區域的第一张卡片
+    // example: 
     if (!cardsInCommonArea.empty()) {
         Card& selectedCard = cardsInCommonArea.front();
-        // 检查玩家是否满足购买卡片的条件（例如擁有足夠的寶石）
-        // 如果满足条件，更新玩家的卡片信息，扣除相應寶石
-        // 否則，提示玩家无法购买该卡片
+        // 检查玩家是否满足購買卡片的條件（例如擁有足夠的寶石）
+        // 如果满足條件，更新玩家的卡片信息，扣除相應寶石
+        // 否則，提示玩家無法購買該卡片
     }
     // 示例结束
 
@@ -153,19 +155,19 @@ void Game::startGame()
 
     // 可以在这里添加其他开始游戏时的逻辑
 
-    // 开始游戏循环，直到游戏结束
+    // 開始遊戲循環 直至遊戲結束
     while (!isGameOver()) {
         // 获取当前玩家
         Player& currentPlayer = players[currentPlayerIndex];
 
-        // 处理当前玩家的回合
+        // 處理當前玩家回合
         playerTurn(currentPlayer);
 
-        // 切换到下一个玩家
+        // 切換到下一个玩家
         currentPlayerIndex = (currentPlayerIndex + 1) % numPlayers;
     }
 
-    // 游戏结束时的逻辑，例如显示最终结果等
+    // 遊戲結束時的邏輯
     std::cout << "遊戲結束！\n";
     displayGameState();
 }
